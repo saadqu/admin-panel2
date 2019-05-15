@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private currentLocation: string;
 
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
+     this.currentLocation = this.location.path();
     }
 
     sidebarOpen() {
@@ -121,6 +123,19 @@ export class NavbarComponent implements OnInit {
               return this.listTitles[item].title;
           }
       }
-      return 'Dashboard';
+      return 'v0.0.1';
+    }
+
+    setCurrentLocation(current: string) {
+        this.currentLocation = current;
+        console.log(this.currentLocation);
+    }
+
+    checkLocation() {
+        if (this.currentLocation.toString() == '/login') {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
