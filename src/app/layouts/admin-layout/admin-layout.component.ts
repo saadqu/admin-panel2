@@ -19,6 +19,7 @@ export class AdminLayoutComponent implements OnInit {
   constructor( public location: Location, private router: Router) {}
 
   ngOnInit() {
+      console.log('location from admin', this.location.path());
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -81,6 +82,14 @@ export class AdminLayoutComponent implements OnInit {
           bool = true;
       }
       return bool;
+  }
+
+  showNavbar() {
+      if (this.location.path() != '/login') {
+          return true;
+      } else {
+          return false;
+      }
   }
 
 }

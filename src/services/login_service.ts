@@ -1,23 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
-
 export class LoginService {
-  
-    private token: any;
+  private token: any;
+  private router: Router;
+  constructor(private Router: Router,) {}
 
-    constructor() { 
-        this.token = sessionStorage.getItem('token');
-    }
+  checkToken() {
+    this.token = sessionStorage.getItem("token");
+    console.log('From Service',sessionStorage.getItem('token'));
 
-    checkToken() {
-        if(this.token) {
-            return true;
-        } else {
-            return false;
-        }
+    if (this.token && this.token != null) {
+      return true;
+    } else {
+      return false;
     }
-  
   }
+
+  logout() {
+      sessionStorage.clear();
+  }
+
+  login() {
+    sessionStorage.setItem('token', 'saad');
+  }
+}

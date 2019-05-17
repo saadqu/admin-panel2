@@ -12,12 +12,16 @@ export class UserProfileComponent implements OnInit {
 
   private navbarComponent: NavbarComponent;
   private location: Location;
+  loginService: any;
   constructor( private NavbarComponent: NavbarComponent, private Location: Location ) {
     this.navbarComponent = NavbarComponent;
     this.location = Location;
   }
 
   ngOnInit() {
+    if (!this.loginService.checkToken()) {
+      this.router.navigate(["/login"]);
+    }
     this.navbarComponent.setCurrentLocation(this.location.path());
   }
 
