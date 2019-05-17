@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from 'app/components/navbar/navbar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LoginService } from "./../../services/login_service";
 
 @Component({
   selector: 'app-user-profile',
@@ -12,10 +13,12 @@ export class UserProfileComponent implements OnInit {
 
   private navbarComponent: NavbarComponent;
   private location: Location;
-  loginService: any;
-  constructor( private NavbarComponent: NavbarComponent, private Location: Location ) {
+  private loginService: LoginService;
+  router: any;
+  constructor( private NavbarComponent: NavbarComponent, private Location: Location, LoginService: LoginService ) {
     this.navbarComponent = NavbarComponent;
     this.location = Location;
+    this.loginService = LoginService;
   }
 
   ngOnInit() {
